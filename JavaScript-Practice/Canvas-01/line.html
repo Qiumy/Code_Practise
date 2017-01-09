@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Demo1</title>
+    <style type="text/css" media="screen">
+    #line {
+        border: solid 1px #aaa;
+        display: block;
+        margin: 50px auto;
+    }
+    </style>
+</head>
+
+<body>
+    <canvas id="line">
+    </canvas>
+    <script>
+    window.onload = function(){
+    	var line = document.getElementById('line');  
+    	line.width = 1024; 
+    	line.height = 768; 
+  
+  		var context = line.getContext('2d'); 
+		//使用context进行绘制 
+
+		context.beginPath();
+		context.moveTo(100,100);
+		context.lineTo(700,700);
+		context.lineTo(100,700);
+		context.lineTo(100,100);
+		context.closePath();
+		
+
+		//给多边形进行着色
+		// context.fillStyle = "rgb(2,100,30)";
+		// context.fill();
+
+		//绘制多边形边框
+		context.lineWidth = 5;
+		context.strokeStyle = "#005588";
+		context.stroke();
+
+		
+		context.beginPath();
+		context.moveTo(200,100);
+		context.lineTo(700,600);
+		context.closePath();
+		context.strokeStyle = "black";
+		context.stroke();
+
+    	
+    }
+    </script>
+</body>
+
+</html>

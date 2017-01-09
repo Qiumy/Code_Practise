@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>createPattern</title>
+</head>
+<body>
+<canvas id="canvas" style="border:1px solid #aaa; display: block; margin:50px auto;">
+	
+</canvas>
+<script>
+	window.onload = function(){
+		var canvas = document.getElementById("canvas");
+		canvas.width = 900;
+		canvas.height = 900;
+
+		var context = canvas.getContext('2d');
+		//状态设置
+		// var bgImg = new Image();
+		// bgImg.src = "paw.png";
+		// bgImg.onload = function(){
+		// 	// var pattern = context.createPattern(bgImg,"no-repeat");
+		// 	var pattern = context.createPattern(bgImg,"repeat");
+		// 	var pattern = context.createPattern(bgImg,"repeat-x");
+		// 	context.fillStyle = pattern;
+		// 	context.fillRect(0,0,600,600);
+		// }
+
+		var bgCanvas = createBgCanvas();
+		var pattern = context.createPattern(bgCanvas,"repeat");
+		context.fillStyle = pattern;
+		context.fillRect(0,0,600,600);
+		
+	};
+
+	function createBgCanvas(){
+		var bgCanvas = document.createElement("canvas");
+		bgCanvas.width = 100;
+		bgCanvas.height = 100;
+
+		var bgCanvasContext = bgCanvas.getContext("2d");
+		drawStar(bgCanvasContext,50,50,50,0);
+		return bgCanvas;
+
+	}
+
+	function drawStar(cxt, x, y, r, rot){
+		cxt.save();
+		//先进行变换再画星星！！
+		cxt.translate(x,y);
+		cxt.rotate(rot/180 * Math.PI);
+		cxt.scale(r,r);
+		// cxt.transform(2,0,0,0,50,100);
+		// cxt.setTransform(2,0,0,0,50,100);
+
+		starPath(cxt);
+
+		cxt.fillStyle = "#fb3";
+		// cxt.strokeStyle = "#fd5";
+		// cxt.lineWidth = 3;
+		// cxt.lineJoin = "round";
+
+		cxt.fill();
+		// cxt.stroke();
+		cxt.restore();
+	}
+
+	function starPath(cxt){
+		cxt.beginPath();
+		for (var i = 0; i < 5; i++) {
+			cxt.lineTo(Math.cos( (18+i*72)/180*Math.PI),
+						-Math.sin( (18+i*72)/180*Math.PI));
+			cxt.lineTo(Math.cos( (54+i*72)/180*Math.PI)*0.5,
+						-Math.sin( (54+i*72)/180*Math.PI)*0.5);
+		}
+		cxt.closePath();
+	}
+
+
+</script>
+	
+</body>
+</html>

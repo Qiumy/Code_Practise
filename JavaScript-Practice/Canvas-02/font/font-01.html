@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Font-01</title>
+</head>
+<body>
+<canvas id="canvas" style="border:1px solid #aaa; display: block;margin: 50px auto">
+	
+</canvas>
+<script>
+	window.onload = function (){
+		var canvas = document.getElementById("canvas");
+
+		canvas.width = 900;
+		canvas.height = 900;
+
+		var context = canvas.getContext("2d");
+		context.font="bold 40px Arial";
+		context.fillStyle = "#058";
+
+		context.fillText("hello World!", 40, 100);
+
+		context.lineWidth = 1;
+		context.strokeStyle = "#058";
+		context.strokeText("hello World!", 40, 200);
+
+		context.fillText("hello World!", 40, 300,100);
+
+		/**
+		font-style:normal(default) italic oblique
+		font-variant:normal(default) small-caps
+		font-weight:lighter normal(default) bold bolder 100-900
+		font-size:20px(default) 2em 150% x-small large 
+		font-family:@font-face web安全字体
+		*/
+
+		context.textAlign = "right";
+		context.fillText("hello World!", 300, 400);
+		/**
+	    context.textAlign= left/center/right;
+		*/
+
+		context.textBaseLine = "bottom";
+		context.fillText("hello World!", 300, 600);
+		/**
+		context.textBaseLine = top/middle/bottom
+		拉丁语言：alphabetic(default);
+		日语和中文等方块字：ideographic
+		印度文：hanging
+		*/
+
+		var textWidth = context.measureText("hello World!").width;
+		context.fillText("the width of the string is " + textWidth + "px",300,700);
+	};
+</script>
+	
+</body>
+</html>

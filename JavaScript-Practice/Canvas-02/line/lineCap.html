@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Linr attr</title>
+</head>
+<body>
+<canvas id="canvas" style="border:1px solid #aaa; display: block; margin:50px auto;">
+	
+</canvas>
+<script>
+	window.onload = function(){
+		var canvas = document.getElementById("canvas");
+		canvas.width = 900;
+		canvas.height = 900;
+
+		var context = canvas.getContext('2d');
+		context.lineWidth = 10;
+		context.strokeStyle = "#005588";
+
+		context.beginPath();
+		context.moveTo(100,200);
+		context.lineTo(700,200);
+		context.lineCap = "butt";
+		context.stroke();
+
+		context.beginPath();
+		context.moveTo(100,400);
+		context.lineTo(700,400);
+		context.lineCap = "round";
+		context.stroke();
+
+		context.beginPath();
+		context.moveTo(100,600);
+		context.lineTo(700,600);
+		context.lineCap = "square";
+		context.stroke();
+
+		context.lineWidth = 1;
+		context.strokeStyle = "red"
+		context.beginPath();
+		context.moveTo(100,100);
+		context.lineTo(100,700);
+		context.stroke();
+
+		context.beginPath();
+		context.moveTo(700,100);
+		context.lineTo(700,700);
+		context.stroke();
+	};
+</script>
+
+<canvas id="star" style="border:1px solid #aaa; display: block; margin:50px auto;">
+	
+</canvas>
+<script>
+	window.onload = function (){
+		var star = document.getElementById("star");
+		star.width = 900;
+		star.height = 900;
+
+		var starcontext = star.getContext('2d');
+
+
+		starcontext.lineWidth = 10;
+
+
+		drawStar(starcontext,100,200,400,400,30);
+	};
+
+	function drawStar(cxt, r, R, x, y, rot){
+		cxt.beginPath();
+		for (var i = 0; i < 5; i++) {
+			cxt.lineTo(Math.cos( (18+i*72-rot)/180*Math.PI)*R+x,
+						-Math.sin( (18+i*72-rot)/180*Math.PI)*R+y);
+			cxt.lineTo(Math.cos( (54+i*72-rot)/180*Math.PI)*r+x,
+						-Math.sin( (54+i*72-rot)/180*Math.PI)*r+y);
+		}
+		cxt.closePath();
+		cxt.stroke();
+	}
+</script>
+	
+</body>
+</html>

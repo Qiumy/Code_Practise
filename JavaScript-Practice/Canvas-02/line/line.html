@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Line</title>
+</head>
+<body>
+<canvas id="canvas" style="border:1px solid #aaa; display: block; margin:50px auto;">
+	
+</canvas>
+<script>
+	window.onload = function(){
+		var canvas = document.getElementById("canvas");
+		canvas.width = 900;
+		canvas.height = 900;
+
+		var context = canvas.getContext('2d');
+		//状态设置
+		context.moveTo(100,100);
+		context.lineTo(400,400);
+		context.lineTo(100,700);
+		context.closePath();
+		context.lineWidth = 10;
+		context.strokeStyle = "#058";
+		context.stroke();
+
+		context.beginPath();
+		context.moveTo(200,100);
+		context.lineTo(500,400);
+		context.lineTo(200,700);
+
+		context.lineWidth = 10;
+		context.strokeStyle = "#aaa";
+
+		//绘制
+		context.stroke();
+
+		context.fillStyle = "yellow";
+		context.fill();
+		drawRect(context,600,200,200,300,2,"green","blue");
+	};
+
+	function drawRect(cxt,x,y,width,height,borderWidth,borderColor,fillColor){
+		cxt.beginPath();
+		cxt.moveTo(x,y);
+		cxt.lineTo(x+width,y);
+		cxt.lineTo(x+width,y+height);
+		cxt.lineTo(x,y+height);
+		cxt.closePath();
+
+		cxt.lineWidth = borderWidth;
+		cxt.strokeStyle = borderColor;
+		cxt.fillStyle = fillColor;
+
+		cxt.fill();
+		cxt.stroke();
+	}
+</script>
+	
+</body>
+</html>

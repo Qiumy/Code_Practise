@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Rect</title>
+</head>
+<body>
+<canvas id="canvas" style="border:1px solid #aaa; display: block; margin:50px auto;">
+	
+</canvas>
+<script>
+	window.onload = function(){
+		var canvas = document.getElementById("canvas");
+		canvas.width = 900;
+		canvas.height = 900;
+
+		var context = canvas.getContext('2d');
+		context.rect(200,200,200,200);
+		context.strokeStyle = "blue";
+		context.stroke();
+
+		context.strokeRect(300,300,300,300);
+		context.strokeStyle = "rgba(255,0,0,0.5)";
+		context.strokeRect(400,300,300,300);
+		context.fillStyle = 'yellow';
+
+		context.fillRect(400,400,200,100);
+
+		context.fillStyle = 'rgba(255,0,0,0.5)';
+		context.fillRect(500,400,200,100);
+	}
+</script>
+	
+</body>
+</html>

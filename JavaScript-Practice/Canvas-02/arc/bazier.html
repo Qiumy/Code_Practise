@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Bazier</title>
+</head>
+<body>
+<canvas id="canvas" style="border:1px solid #aaa; display: block;margin: 50px auto">
+	
+</canvas>
+<script>
+	window.onload = function (){
+		var canvas = document.getElementById("canvas");
+
+		canvas.width = 900;
+		canvas.height = 900;
+
+		var context = canvas.getContext("2d");
+		context.moveTo(100,250);
+		context.quadraticCurveTo(300,400,250,600);
+		context.bezierCurveTo(300,400,250,600,700,400);
+		context.stroke();
+
+		
+	};
+</script>
+	
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Stars</title>
+</head>
+<body>
+<canvas id="star" style="border:1px solid #aaa; display: block; margin:50px auto;">
+	
+</canvas>
+<script>
+	window.onload = function (){
+		var star = document.getElementById("star");
+		star.width = 1200;
+		star.height = 800;
+
+		var starcontext = star.getContext('2d');
+		
+
+		// var skyStyle = starcontext.createLinearGradient(0,0,0,star.height);
+	
+		var skyStyle = starcontext.createRadialGradient(star.width/2,star.height,0,star.width/2,star.height,star.height);
+
+		skyStyle.addColorStop(0.0,"#035");
+		skyStyle.addColorStop(1.0,"black");
+
+		// starcontext.fillStyle = "black";
+		starcontext.fillStyle = skyStyle;
+		starcontext.fillRect(0,0,star.width,star.height);
+
+
+		for(var i=0; i<200; i++){
+			var r = Math.random()*5+5;
+			var x = Math.random()*star.width;
+			var y = Math.random()*star.height*0.65;
+			var a = Math.random()*360;
+			drawStar(starcontext,x,y,r,a);
+		}
+
+		fillMoon(starcontext,2,900,200,80,30);
+	};
+
+	function drawStar(cxt, x, y, r, rot){
+		cxt.save();
+		//先进行变换再画星星！！
+		cxt.translate(x,y);
+		cxt.rotate(rot/180 * Math.PI);
+		cxt.scale(r,r);
+		// cxt.transform(2,0,0,0,50,100);
+		// cxt.setTransform(2,0,0,0,50,100);
+
+		starPath(cxt);
+
+		cxt.fillStyle = "#fb3";
+		// cxt.strokeStyle = "#fd5";
+		// cxt.lineWidth = 3;
+		// cxt.lineJoin = "round";
+
+		cxt.fill();
+		// cxt.stroke();
+		cxt.restore();
+	}
+
+	function starPath(cxt){
+		cxt.beginPath();
+		for (var i = 0; i < 5; i++) {
+			cxt.lineTo(Math.cos( (18+i*72)/180*Math.PI),
+						-Math.sin( (18+i*72)/180*Math.PI));
+			cxt.lineTo(Math.cos( (54+i*72)/180*Math.PI)*0.5,
+						-Math.sin( (54+i*72)/180*Math.PI)*0.5);
+		}
+		cxt.closePath();
+	}
+
+	function fillMoon(cxt,d,x,y,r,rot,fillColor){
+		cxt.save();
+		cxt.translate(x,y);
+		cxt.rotate(rot*Math.PI/180);
+		cxt.scale(r,r);
+		pathMoon(cxt,d);
+		cxt.fillStyle = fillColor || "#fb5";
+		cxt.fill();
+		cxt.restore();
+	}
+
+	function pathMoon(cxt,d){
+		cxt.beginPath();
+		cxt.arc(0,0,1,0.5*Math.PI, 1.5*Math.PI,true);
+		cxt.moveTo(0,-1);
+		cxt.arcTo(d,0,0,1,dis(0,-1,d,0)/d);
+		cxt.closePath();
+	}
+
+	function dis(x1,y1,x2,y2){
+		return Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+	}
+</script>
+	
+</body>
+</html>

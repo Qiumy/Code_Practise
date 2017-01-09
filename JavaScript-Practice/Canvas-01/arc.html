@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo3</title>
+</head>
+<body>
+<!--绘制弧线-->
+<canvas id="canvas" style="border:1px solid #aaa; display: block; margin:50px auto">
+	
+</canvas>
+
+<canvas id="arc" style="border:1px solid #aaa; display: block; margin:50px auto">
+	
+</canvas>
+<script>
+	window.onload = function(){
+		var canvas = document.getElementById('canvas');  
+    	canvas.width = 1024; 
+    	canvas.height = 768; 
+
+    	var context = canvas.getContext("2d");
+    	context.strokeStyle = "#005588";
+    	context.arc(300,300,200,0.5*Math.PI,1.5*Math.PI,true);
+    	context.stroke();
+
+    	var arc = document.getElementById("arc");
+    	arc.width = 800;
+    	arc.height = 800;
+    	var cxt = arc.getContext("2d");
+    	cxt.lineWidth = 5;
+    	cxt.strokeStyle = "#005588";
+
+    	cxt.fillStyle = "red";
+    	for (var i = 0; i < 5; i++) {
+    		cxt.beginPath();
+    		cxt.arc(50+i*120,100,60,0,2*Math.PI*(i+1)/5);
+    		//closePath会闭合不封闭的路径
+    		cxt.closePath();
+    		cxt.stroke();
+    	}
+    	for (var i = 0; i < 5; i++) {
+    		cxt.beginPath();
+    		cxt.arc(50+i*120,250,60,0,2*Math.PI*(i+1)/5);
+
+    		cxt.stroke();
+    	}
+    	for (var i = 0; i < 5; i++) {
+    		cxt.beginPath();
+    		cxt.arc(50+i*120,400,60,0,2*Math.PI*(i+1)/5,true);
+    		//closePath会闭合不封闭的路径
+    		cxt.closePath();
+    		cxt.stroke();
+    		cxt.fill();
+    	}
+	}
+</script>
+	
+</body>
+</html>
